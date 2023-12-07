@@ -1,5 +1,35 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock title %}
+
+{% block home %}active{% endblock home %}
 {% block content %}
-<h1>This is Home Page</h1>
+<div class="w-75 m-auto">
+    <h1 class="my-5">All Tasks: </h1>
+    <div class="row">
+    {% for item in data %}
+    <div class="col-md-6 mb-5 col-lg-4 ">
+        <div class="card h-100">
+        <div class="card-body">
+            <h6 class="card-subtitle text-center">ID: {{item.id}}</h6>
+            <h5 class="card-title text-center">{{item.title}}</h5>
+            <h6>{{item.assign_date}}</h6>
+            <p class="card-text">{{item.description}}</p>
+            <h6>Category: {% for cat in item.catagories.all %}
+            <button class="btn btn-primary disabled btn-sm">{{cat.name}}</button>
+            {% endfor %}</h6>
+            {% if item.is_completed %}
+            <h5 class="text-center text-success">Completed</h5>
+            {% else %} 
+            <h5 class="text-center">
+                <a href="{% url "edit_task" item.id %}" class="btn btn-warning">Edit</a>
+                <a href="{% url "delete_task" item.id %}" class="btn btn-danger">Delete</a>
+            </h5>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
 {% endblock content %}
+

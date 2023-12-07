@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-{% block title %}Add Category{% endblock title %}
-{% block addCategory %}active{% endblock addCategory %}
+{% block title %}Add Task{% endblock title %}
+{% block addTask %}active{% endblock addTask %}
 {% block content %}
 <form action="" method="post" class="w-50 m-auto">
-    <h3 class="my-5">Add Category page</h3>
+    <h3 class="my-5">Add Task page</h3>
     {% csrf_token %}
     {{form|crispy}}
     <button class="btn btn-warning">Submit</button>
 </form>
 {% endblock content %}
-
